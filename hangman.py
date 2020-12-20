@@ -7,7 +7,11 @@ Players can only guess single alphabetic characters one single time.
 The word should be chosen randomly from a list of words.
 
 """
+# To do:
+# Ask to play again at the end of a game
+# Fill "words" with data from a larger source of words, like an online dictionary
 
+# Maybe: Create GUI or Webapp version of this game
 
 import random
 
@@ -31,14 +35,6 @@ def player_guess():
             print('Please enter a single character')
         elif not guess.isalpha():
             print('No numbers allowed!')
-
-
-def guess_in_word():
-    """Return True if player's guess is in target word"""
-    word = get_word()
-    guess = player_guess()
-    if guess in word:
-        return True
 
 
 def play_game():
@@ -65,13 +61,13 @@ def play_game():
                     word_to_guess.replace(char, '')
             list_of_guesses.append(guess)
             # Replace the '*' in guessed to the player's guess as per our word_to_guess:
-            new_guessed = ''
-            for index, char in enumerate(word_to_guess):
-                if char == guess:
-                    new_guessed += char
+            new_guessed = '' # Create new string to work with (strings are immutable) 
+            for index, char in enumerate(word_to_guess): # Enumerate through characters in word.
+                if char == guess: 
+                    new_guessed += char # If the char matches the player's guess, append it to new_guessed.
                 else:
-                    new_guessed += guessed[index]
-            guessed = new_guessed
+                    new_guessed += guessed[index] # If the char does not match, append whatever is in guessed to new_guessed at its original index.
+            guessed = new_guessed # Now we can use the variable "guessed" again.
             print(guessed)
             if guessed == word_to_guess:
                 print(f'You have guessed the word "{word_to_guess}" and have won the game!')
